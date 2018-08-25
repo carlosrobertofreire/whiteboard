@@ -1,5 +1,9 @@
 package com.carlosrobertofreire.whiteboard.datastructure;
 
+/**
+ * @author carlosrobertofreire
+ *
+ */
 public class DynamicArray {
 
 	private int[] data = new int[1];
@@ -13,7 +17,7 @@ public class DynamicArray {
 		return size;
 	}
 
-	/*
+	/**
 	 * Average Case O(1) - Constant
 	 * Worst Case O(n) - Linear
 	 */
@@ -25,7 +29,7 @@ public class DynamicArray {
 		return index;
 	}
 
-	/*
+	/**
 	 * O(n) - Linear
 	 */
 	public boolean contains(int value) {
@@ -37,7 +41,7 @@ public class DynamicArray {
 		return false;
 	}
 
-	/*
+	/**
 	 * O(1) - Constant
 	 */
 	public int get(int index) {
@@ -47,7 +51,7 @@ public class DynamicArray {
 		return data[index];
 	}
 
-	/*
+	/**
 	 * O(n) - Linear
 	 */
 	public void insert(int index, int value) {
@@ -64,7 +68,7 @@ public class DynamicArray {
 		size++;
 	}
 
-	/*
+	/**
 	 * O(n) - Linear
 	 */
 	public void delete(int index) {
@@ -91,7 +95,7 @@ public class DynamicArray {
 		}
 	}
 
-	/*
+	/**
 	 * O(n) - Linear
 	 */
 	private void resizeArray(int newCapacity) {
