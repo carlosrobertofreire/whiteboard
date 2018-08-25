@@ -1,2 +1,2 @@
 # whiteboard
-Data Structures, Algorithms and Concepts.
+Data Structures, Algorithms and Concepts from scratch.
