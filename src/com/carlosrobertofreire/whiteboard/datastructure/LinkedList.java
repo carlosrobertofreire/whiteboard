@@ -50,12 +50,12 @@ public class LinkedList {
 	 * O(n) - Linear
 	 */
 	public boolean contains(int value) {
-		Node currentNode = head;
-		while (currentNode != null) {
-			if (currentNode.data == value) {
+		Node current = head;
+		while (current != null) {
+			if (current.data == value) {
 				return true;
 			}
-			currentNode = currentNode.next;
+			current = current.next;
 		}
 		return false;
 	}
@@ -65,14 +65,14 @@ public class LinkedList {
 	 */
 	public int get(int index) {
 		if (index >= 0 && head != null) {
-			Node currentNode = head;
+			Node current = head;
 			int position = 0;
-			while (currentNode != null) {
+			while (current != null) {
 				if (index == position) {
-					return currentNode.data;
+					return current.data;
 				}
 				position++;
-				currentNode = currentNode.next;
+				current = current.next;
 			}
 		}
 		throw new IllegalArgumentException("Invalid index!");
@@ -89,16 +89,16 @@ public class LinkedList {
 				head = newNode;
 				return;
 			} else {
-				Node currentNode = head;
+				Node current = head;
 				int position = 0;
-				while (currentNode.next != null) {
+				while (current.next != null) {
 					if (position + 1 == index) {
-						newNode.next = currentNode.next;
-						currentNode.next = newNode;
+						newNode.next = current.next;
+						current.next = newNode;
 						return;
 					}
 					position++;
-					currentNode = currentNode.next;
+					current = current.next;
 				}
 			}
 		}
@@ -117,18 +117,18 @@ public class LinkedList {
 				}
 				return;
 			} else {
-				Node currentNode = head;
+				Node current = head;
 				int position = 0;
-				while (currentNode.next != null) {
+				while (current.next != null) {
 					if (position + 1 == index) {
-						currentNode.next = currentNode.next.next;
-						if (currentNode.next == null) {
-							tail = currentNode;
+						current.next = current.next.next;
+						if (current.next == null) {
+							tail = current;
 						}
 						return;
 					}
 					position++;
-					currentNode = currentNode.next;
+					current = current.next;
 				}
 			}
 		}
