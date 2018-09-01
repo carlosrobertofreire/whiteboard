@@ -27,8 +27,7 @@ public class LinkedList {
 			head = newNode;
 			tail = head;
 		} else {
-			Node oldTail = tail;
-			oldTail.next = newNode;
+			tail.next = newNode;
 			tail = newNode;
 		}
 	}
