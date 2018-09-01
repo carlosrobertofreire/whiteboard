@@ -102,7 +102,7 @@ public class LinkedList {
 				}
 			}
 		}
-		throw new IllegalArgumentException("Invalid index");
+		throw new IllegalArgumentException("Invalid index!");
 	}
 
 	/**
