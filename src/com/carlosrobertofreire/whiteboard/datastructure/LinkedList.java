@@ -2,7 +2,7 @@ package com.carlosrobertofreire.whiteboard.datastructure;
 
 public class LinkedList {
 
-	private class Node {
+	class Node {
 		int data;
 		Node next;
 
@@ -49,7 +49,7 @@ public class LinkedList {
 	}
 
 	public int get(int index) {
-		if (index > 0 && head != null) {
+		if (index >= 0 && head != null) {
 			Node currentNode = head;
 			int position = 0;
 			while (currentNode != null) {
@@ -114,4 +114,12 @@ public class LinkedList {
 		throw new IllegalArgumentException("Invalid index!");
 	}
 
+	public Node getHead() {
+		return head;
+	}
+	
+	public Node getTail() {
+		return tail;
+	}
+	
 }
