@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.carlosrobertofreire.whiteboard.datastructure.DynamicArray;
-
 public class DynamicArrayTest {
 
 	DynamicArray target = null;
