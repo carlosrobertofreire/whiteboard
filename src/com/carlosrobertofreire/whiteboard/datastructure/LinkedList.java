@@ -1,5 +1,9 @@
 package com.carlosrobertofreire.whiteboard.datastructure;
 
+/**
+ * @author carlosrobertofreire
+ *
+ */
 public class LinkedList {
 
 	class Node {
@@ -14,6 +18,9 @@ public class LinkedList {
 	private Node head;
 	private Node tail;
 
+	/**
+	 * O(1) - Constant
+	 */
 	public void append(int value) {
 		Node newNode = new Node(value);
 		if (head == null) {
@@ -26,6 +33,9 @@ public class LinkedList {
 		}
 	}
 
+	/**
+	 * O(1) - Constant
+	 */
 	public void prepend(int value) {
 		Node newNode = new Node(value);
 		if (head == null) {
@@ -37,6 +47,9 @@ public class LinkedList {
 		}
 	}
 
+	/**
+	 * O(n) - Linear
+	 */
 	public boolean contains(int value) {
 		Node currentNode = head;
 		while (currentNode != null) {
@@ -48,6 +61,9 @@ public class LinkedList {
 		return false;
 	}
 
+	/**
+	 * O(n) - Linear
+	 */
 	public int get(int index) {
 		if (index >= 0 && head != null) {
 			Node currentNode = head;
@@ -63,6 +79,9 @@ public class LinkedList {
 		throw new IllegalArgumentException("Invalid index!");
 	}
 
+	/**
+	 * O(n) - Linear
+	 */
 	public void insert(int index, int value) {
 		if (head != null && index >= 0) {
 			Node newNode = new Node(value);
@@ -87,6 +106,9 @@ public class LinkedList {
 		throw new IllegalArgumentException("Invalid index");
 	}
 
+	/**
+	 * O(n) - Linear
+	 */
 	public void delete(int index) {
 		if (head != null && index >= 0) {
 			if (index == 0) {
