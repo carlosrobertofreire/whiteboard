@@ -3,6 +3,10 @@ package com.carlosrobertofreire.whiteboard.datastructure;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * @author carlosrobertofreire
+ *
+ */
 public class Hashtable {
 
 	private LinkedList<HashEntry>[] data;
@@ -21,6 +25,9 @@ public class Hashtable {
 		data = new LinkedList[capacity];
 	}
 
+	/**
+	 * O(1) - Constant
+	 */
 	public void put(String key, int value) {
 		if (containsKey(key)) {
 			throw new IllegalArgumentException("Key already exists!");
@@ -37,6 +44,9 @@ public class Hashtable {
 		data[index] = target;
 	}
 
+	/**
+	 * O(1) - Constant
+	 */
 	public int get(String key) {
 		validateKey(key);
 		int hashcode = convertKey2Hashcode(key);
@@ -55,6 +65,9 @@ public class Hashtable {
 		throw new IllegalArgumentException("Key not found!");
 	}
 
+	/**
+	 * O(1) - Constant
+	 */
 	public boolean containsKey(String key) {
 		validateKey(key);
 		int hashcode = convertKey2Hashcode(key);
@@ -72,7 +85,10 @@ public class Hashtable {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * O(1) - Constant
+	 */
 	public void delete(String key) {
 		validateKey(key);
 		int hashcode = convertKey2Hashcode(key);
