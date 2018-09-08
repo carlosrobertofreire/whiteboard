@@ -217,5 +217,50 @@ public class LinkedListTest {
 		
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void test_deleteByData_targetIsEmpty() {
+		target.deleteByData(43);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test_deleteByData_inputIsInvalid() {
+		target.deleteByData(-8);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test_deleteByData_inputDoesNotExist() {
+		target.append(2);
+		target.deleteByData(1);
+	}
+	
+	@Test
+	public void test_deleteByData_targetWithOneItem_success() {
+		target.append(7);
+		Assert.assertEquals(7, target.getHead().data);
+		Assert.assertEquals(7, target.getTail().data);
+		target.deleteByData(7);
+		Assert.assertEquals(null, target.getHead());
+		Assert.assertEquals(null, target.getTail());
+	}
+	
+	@Test
+	public void test_deleteByData_targetWithThreeItems_success() {
+		target.append(7);
+		target.append(2);
+		target.append(9);
+		Assert.assertEquals(7, target.getHead().data);
+		Assert.assertEquals(9, target.getTail().data);
+		target.deleteByData(9);
+		Assert.assertEquals(7, target.getHead().data);
+		Assert.assertEquals(2, target.getTail().data);
+		target.deleteByData(2);
+		Assert.assertEquals(7, target.getHead().data);
+		Assert.assertEquals(7, target.getTail().data);
+		target.deleteByData(7);
+		Assert.assertEquals(null, target.getHead());
+		Assert.assertEquals(null, target.getTail());
+		
+	}
+
 
 }

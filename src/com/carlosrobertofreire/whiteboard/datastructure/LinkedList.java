@@ -135,6 +135,33 @@ public class LinkedList {
 		throw new IllegalArgumentException("Invalid index!");
 	}
 
+	/**
+	 * O(n) - Linear
+	 */
+	public void deleteByData(int data){
+		if (head != null){
+			if (head.data == data) {
+				head = head.next;
+				if (head == null) {
+					tail = null;
+				}
+				return;
+			}
+			Node current = head;			
+			while (current.next != null){
+				if (current.next.data == data){
+					if (tail.data == data){				
+						tail = current;
+					}
+					current.next = current.next.next;
+					return;	
+				}
+				current = current.next;
+			}
+		}
+		throw new IllegalArgumentException("Value nout found!");
+	}
+		
 	public Node getHead() {
 		return head;
 	}
