@@ -173,45 +173,45 @@ public class LinkedListTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void test_delete_targetIsEmpty() {
-		target.delete(0);
+	public void test_deleteByIndex_targetIsEmpty() {
+		target.deleteByIndex(0);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void test_delete_indexIsInvalid() {
-		target.delete(-8);
+	public void test_deleteByIndex_indexIsInvalid() {
+		target.deleteByIndex(-8);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void test_delete_indexDoesNotExist() {
+	public void test_deleteByIndex_indexDoesNotExist() {
 		target.append(2);
-		target.delete(1);
+		target.deleteByIndex(1);
 	}
 	
 	@Test
-	public void test_delete_targetWithOneItem_success() {
+	public void test_deleteByIndex_targetWithOneItem_success() {
 		target.append(7);
 		Assert.assertEquals(7, target.getHead().data);
 		Assert.assertEquals(7, target.getTail().data);
-		target.delete(0);
+		target.deleteByIndex(0);
 		Assert.assertEquals(null, target.getHead());
 		Assert.assertEquals(null, target.getTail());
 	}
 	
 	@Test
-	public void test_delete_targetWithThreeItems_success() {
+	public void test_deleteByIndex_targetWithThreeItems_success() {
 		target.append(7);
 		target.append(2);
 		target.append(9);
 		Assert.assertEquals(7, target.getHead().data);
 		Assert.assertEquals(9, target.getTail().data);
-		target.delete(2);
+		target.deleteByIndex(2);
 		Assert.assertEquals(7, target.getHead().data);
 		Assert.assertEquals(2, target.getTail().data);
-		target.delete(1);
+		target.deleteByIndex(1);
 		Assert.assertEquals(7, target.getHead().data);
 		Assert.assertEquals(7, target.getTail().data);
-		target.delete(0);
+		target.deleteByIndex(0);
 		Assert.assertEquals(null, target.getHead());
 		Assert.assertEquals(null, target.getTail());
 		
@@ -261,6 +261,5 @@ public class LinkedListTest {
 		Assert.assertEquals(null, target.getTail());
 		
 	}
-
 
 }

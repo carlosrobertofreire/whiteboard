@@ -108,7 +108,7 @@ public class LinkedList {
 	/**
 	 * O(n) - Linear
 	 */
-	public void delete(int index) {
+	public void deleteByIndex(int index) {
 		if (head != null && index >= 0) {
 			if (index == 0) {
 				head = head.next;
