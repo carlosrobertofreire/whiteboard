@@ -21,6 +21,7 @@ public class Hashtable {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public Hashtable(int capacity) {
 		data = new LinkedList[capacity];
 	}
