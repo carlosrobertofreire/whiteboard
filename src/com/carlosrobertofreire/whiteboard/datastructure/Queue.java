@@ -44,7 +44,7 @@ public class Queue {
 	 */
 	public int peek() {
 		if (isEmpty()) {
-			throw new IllegalStateException("Stack is empty!");
+			throw new IllegalStateException("Queue is empty!");
 		}
 		return first.data;
 	}
@@ -54,7 +54,7 @@ public class Queue {
 	 */
 	public int dequeue() {
 		if (isEmpty()) {
-			throw new IllegalStateException("Stack is empty!");
+			throw new IllegalStateException("Queue is empty!");
 		}
 		int result = first.data;
 		first = first.next;
