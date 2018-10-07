@@ -18,23 +18,24 @@ public class BinarySearchTree {
 
 	private Node root;
 
-	private void insert(Node root, int value) {
+	private Node insert(Node root, int value) {
 		if (root == null) {
 			root = new Node(value);
-			return;
+			return root;
 		}
 		if (value > root.data) {
-			insert(root.right, value);
+			root.right = insert(root.right, value);
 		} else {
-			insert(root.left, value);
+			root.left = insert(root.left, value);
 		}
+		return root;
 	}
 
 	/**
 	 * O(log n) - Logarithmic
 	 */
 	public void insert(int value) {
-		insert(root, value);
+		root = insert(root, value);
 	}
 
 	private Node find(Node root, int value) {
@@ -57,12 +58,16 @@ public class BinarySearchTree {
 	public Node find(int value) {
 		return find(root, value);
 	}
-	
+
 	/**
 	 * O(log n) - Logarithmic
 	 */
 	public boolean contains(int value) {
-		return find(value) != null;
+		try {
+			return find(value) != null;
+		} catch (IllegalArgumentException illegalArgumentException) {
+			return false;
+		}
 	}
 
 	private void delete(Node root, int value) {
