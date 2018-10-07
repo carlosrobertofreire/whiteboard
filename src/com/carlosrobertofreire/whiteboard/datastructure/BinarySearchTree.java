@@ -6,7 +6,7 @@ package com.carlosrobertofreire.whiteboard.datastructure;
  */
 public class BinarySearchTree {
 
-	private class Node {
+	class Node {
 		int data;
 		Node left;
 		Node right;
