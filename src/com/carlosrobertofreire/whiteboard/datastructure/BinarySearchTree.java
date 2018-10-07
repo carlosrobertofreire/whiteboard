@@ -32,6 +32,9 @@ public class BinarySearchTree {
 		}
 	}
 
+	/**
+	 * O(log n) - Logarithmic
+	 */
 	public void insert(int value) {
 		insert(root, value);
 	}
@@ -50,6 +53,9 @@ public class BinarySearchTree {
 		}
 	}
 
+	/**
+	 * O(log n) - Logarithmic
+	 */
 	public Node find(int value) {
 		return find(root, value);
 	}
@@ -90,6 +96,9 @@ public class BinarySearchTree {
 		}
 	}
 
+	/**
+	 * O(log n) - Logarithmic
+	 */
 	public void delete(int value) {
 		delete(root, value);
 	}
