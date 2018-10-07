@@ -28,7 +28,6 @@ public class BinarySearchTreeTest {
 		target.insert(20);
 		target.insert(30);
 		target.insert(10);
-		target.printInOrder();
 		Assert.assertEquals(30, target.find(30).data);
 		Assert.assertEquals(10, target.find(10).data);
 	}
@@ -62,15 +61,15 @@ public class BinarySearchTreeTest {
 		Assert.assertEquals(true, target.contains(10));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void test_contains_inputDoesNotExist() {
 		target.insert(45);
-		target.contains(10);
+		Assert.assertEquals(false, target.contains(10));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void test_contains_targetIsEmpty() {
-		target.contains(10);
+		Assert.assertEquals(false, target.contains(10));
 	}
 	
 	@Test
