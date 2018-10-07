@@ -59,6 +59,13 @@ public class BinarySearchTree {
 	public Node find(int value) {
 		return find(root, value);
 	}
+	
+	/**
+	 * O(log n) - Logarithmic
+	 */
+	public boolean contains(int value) {
+		return find(value) != null;
+	}
 
 	private void delete(Node root, int value) {
 		if (root == null) {
