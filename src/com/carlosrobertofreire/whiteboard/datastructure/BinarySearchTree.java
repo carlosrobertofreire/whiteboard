@@ -1,7 +1,5 @@
 package com.carlosrobertofreire.whiteboard.datastructure;
 
-import java.util.NoSuchElementException;
-
 /**
  * @author carlosrobertofreire
  *
@@ -41,7 +39,7 @@ public class BinarySearchTree {
 
 	private Node find(Node root, int value) {
 		if (root == null) {
-			throw new NoSuchElementException("Value is not in the Tree!");
+			throw new IllegalArgumentException("Value not found in the Tree!");
 		}
 		if (root.data == value) {
 			return root;
