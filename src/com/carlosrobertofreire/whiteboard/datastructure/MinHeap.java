@@ -81,6 +81,9 @@ public class MinHeap {
 		return index >= 0 && index < size;
 	}
 
+	/**
+	 * O(log n) - Logarithmic
+	 */
 	public void insert(int value) {
 		ensureExtraCapacity();
 		data[size] = value;
@@ -108,6 +111,9 @@ public class MinHeap {
 		}
 	}
 
+	/**
+	 * O(log n) - Logarithmic
+	 */
 	public int extractMin() {
 		if (isEmpty()) {
 			throw new IllegalStateException("Heap is empty!");
@@ -139,6 +145,9 @@ public class MinHeap {
 		}
 	}
 
+	/**
+	 * O(1) - Constant
+	 */
 	public int getMin() {
 		if (isEmpty()) {
 			throw new IllegalStateException("Heap is empty!");
