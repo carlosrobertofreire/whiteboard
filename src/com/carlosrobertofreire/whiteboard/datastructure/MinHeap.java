@@ -139,4 +139,10 @@ public class MinHeap {
 		}
 	}
 
+	public int getMin() {
+		if (isEmpty()) {
+			throw new IllegalStateException("Heap is empty!");
+		}
+		return data[0];
+	}
 }
