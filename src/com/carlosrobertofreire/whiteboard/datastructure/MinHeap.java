@@ -81,4 +81,62 @@ public class MinHeap {
 		return index >= 0 && index < size;
 	}
 
+	public void insert(int value) {
+		ensureExtraCapacity();
+		data[size] = value;
+		heapifyUp(size);
+		size++;
+	}
+
+	private void heapifyUp(int currentIndex) {
+		if (hasParent(currentIndex)) {
+			int parentIndex = getParentIndex(currentIndex);
+			if (data[currentIndex] < data[parentIndex]) {
+				swap(currentIndex, parentIndex);
+				heapifyUp(parentIndex);
+			}
+		}
+	}
+
+	private void ensureExtraCapacity() {
+		if (size == capacity) {
+			int[] newData = new int[capacity * 2];
+			for (int i = 0; i < size; i++) {
+				newData[i] = data[i];
+			}
+			data = newData;
+		}
+	}
+
+	public int extractMin() {
+		if (isEmpty()) {
+			throw new IllegalStateException("Heap is empty!");
+		}
+		int minValue = data[0];
+		data[0] = 0;
+		swap(data[0], data[size - 1]);
+		size--;
+		heapifyDown(0);
+		return minValue;
+	}
+
+	private boolean isEmpty() {
+		return data == null || size == 0;
+	}
+
+	private void heapifyDown(int currentIndex) {
+		if (hasLeftChild(currentIndex)) {
+			int lowerIndex = getLeftChildIndex(currentIndex);
+			if (hasRightChild(currentIndex)) {
+				if (rightChild(currentIndex) < leftChild(currentIndex)) {
+					lowerIndex = getRightChildIndex(currentIndex);
+				}
+			}
+			if (data[lowerIndex] < data[currentIndex]) {
+				swap(lowerIndex, currentIndex);
+				heapifyDown(lowerIndex);
+			}
+		}
+	}
+
 }
