@@ -85,7 +85,7 @@ public class MinHeap {
 		int lastIndex = size;
 		data[lastIndex] = value;
 		size++;
-		heapifyUp(lastIndex);		
+		heapifyUp(lastIndex);
 	}
 
 	private void heapifyUp(int currentIndex) {
