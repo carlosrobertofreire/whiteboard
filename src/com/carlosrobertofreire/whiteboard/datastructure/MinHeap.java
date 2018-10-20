@@ -65,16 +65,12 @@ public class MinHeap {
 	}
 
 	private void swap(int indexA, int indexB) {
-		validateIndexes(indexA, indexB);
-		int value = data[indexA];
-		data[indexA] = data[indexB];
-		data[indexB] = value;
-	}
-
-	private void validateIndexes(int indexA, int indexB) {
 		if (!isValidIndex(indexA) || !isValidIndex(indexB)) {
 			throw new IllegalArgumentException("Invalid index!");
 		}
+		int value = data[indexA];
+		data[indexA] = data[indexB];
+		data[indexB] = value;
 	}
 
 	private boolean isValidIndex(int index) {
@@ -94,10 +90,9 @@ public class MinHeap {
 
 	private void heapifyUp(int currentIndex) {
 		if (hasParent(currentIndex)) {
-			int parentIndex = getParentIndex(currentIndex);
-			if (data[currentIndex] < data[parentIndex]) {
-				swap(currentIndex, parentIndex);
-				heapifyUp(parentIndex);
+			if (data[currentIndex] < parent(currentIndex)) {
+				swap(currentIndex, getParentIndex(currentIndex));
+				heapifyUp(getParentIndex(currentIndex));
 			}
 		}
 	}
@@ -119,11 +114,12 @@ public class MinHeap {
 		if (isEmpty()) {
 			throw new IllegalStateException("Heap is empty!");
 		}
-		int minValue = data[0];
-		data[0] = 0;
-		swap(0, size - 1);
+		int rootIndex = 0;
+		int minValue = data[rootIndex];
+		data[rootIndex] = 0;
+		swap(rootIndex, size - 1);
 		size--;
-		heapifyDown(0);
+		heapifyDown(rootIndex);
 		return minValue;
 	}
 
