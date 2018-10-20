@@ -86,9 +86,10 @@ public class MinHeap {
 	 */
 	public void insert(int value) {
 		ensureExtraCapacity();
-		data[size] = value;
-		heapifyUp(size);
+		int lastIndex = size;
+		data[lastIndex] = value;
 		size++;
+		heapifyUp(lastIndex);		
 	}
 
 	private void heapifyUp(int currentIndex) {
@@ -120,7 +121,7 @@ public class MinHeap {
 		}
 		int minValue = data[0];
 		data[0] = 0;
-		swap(data[0], data[size - 1]);
+		swap(0, size - 1);
 		size--;
 		heapifyDown(0);
 		return minValue;
@@ -153,5 +154,9 @@ public class MinHeap {
 			throw new IllegalStateException("Heap is empty!");
 		}
 		return data[0];
+	}
+
+	public int getSize() {
+		return size;
 	}
 }
