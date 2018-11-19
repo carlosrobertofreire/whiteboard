@@ -27,6 +27,7 @@ public class Trie {
 		if (root == null) {
 			root = new TrieNode();
 		}
+		word = word.toLowerCase();
 		TrieNode currentTrieNode = root;
 		for (int level = 0; level < word.length(); level++) {
 			char letter = word.charAt(level);
@@ -43,6 +44,7 @@ public class Trie {
 		if (isEmpty() || !isValid(word)) {
 			return false;
 		}
+		word = word.toLowerCase();
 		TrieNode currentTrieNode = root;
 		for (int level = 0; level < word.length(); level++) {
 			char letter = word.charAt(level);
@@ -56,7 +58,17 @@ public class Trie {
 	}
 
 	private boolean isValid(String word) {
-		return word != null && !word.isEmpty();
+		if (word == null || word.isEmpty()) {
+			return false;
+		}
+		word = word.toLowerCase();
+		for (char letter : word.toCharArray()) {
+			int index = letter - 'a';
+			if (index < 0 || index > 25) {
+				return false;
+			}
+		}		
+		return true;			
 	}
 
 	private boolean isEmpty() {
@@ -70,6 +82,7 @@ public class Trie {
 		if (!isValid(word)) {
 			throw new IllegalArgumentException("Word is invalid!");
 		}
+		word = word.toLowerCase();
 		delete(root, word, 0);
 	}
 
