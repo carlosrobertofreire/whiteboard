@@ -59,6 +59,11 @@ public class TrieTest {
 	public void test_insert_inputIsEmpty() {
 		target.insert("");
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test_insert_inputIsInvalid() {
+		target.insert("What is?");
+	}
 
 	@Test
 	@Ignore
