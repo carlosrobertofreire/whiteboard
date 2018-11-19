@@ -28,16 +28,15 @@ public class Trie {
 			root = new TrieNode();
 		}
 		TrieNode currentTrieNode = root;
-		int index = 0;
 		for (int level = 0; level < word.length(); level++) {
 			char letter = word.charAt(level);
-			index = letter - 'a';
+			int index = letter - 'a';
 			if (currentTrieNode.children[index] == null) {
 				currentTrieNode.children[index] = new TrieNode();
 			}
 			currentTrieNode = currentTrieNode.children[index];
 		}
-		currentTrieNode.children[index].isCompleteWord = true;
+		currentTrieNode.isCompleteWord = true;
 	}
 
 	public boolean contains(String word) {
