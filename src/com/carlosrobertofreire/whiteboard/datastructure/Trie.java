@@ -21,7 +21,7 @@ public class Trie {
 	private TrieNode root;
 
 	public void insert(String word) {
-		if (word == null || word.isEmpty()) {
+		if (!isValid(word)) {
 			throw new IllegalArgumentException("Invalid word!");
 		}
 		if (root == null) {
@@ -56,12 +56,20 @@ public class Trie {
 		return currentTrieNode.isCompleteWord;
 	}
 
+	private boolean isValid(String word) {
+		return word != null && !word.isEmpty();
+	}
+
+	private boolean isEmpty() {
+		return root == null;
+	}
+
 	public void delete(String word) {
 		if (isEmpty()) {
 			throw new IllegalStateException("Trie is empty!");
 		}
-		if (word == null || word.isEmpty()) {
-			throw new IllegalArgumentException("String is invalid!");
+		if (!isValid(word)) {
+			throw new IllegalArgumentException("Word is invalid!");
 		}
 		delete(root, word, 0);
 	}
