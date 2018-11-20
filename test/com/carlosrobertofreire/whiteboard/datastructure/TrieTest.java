@@ -66,15 +66,39 @@ public class TrieTest {
 	}
 
 	@Test
-	@Ignore
 	public void test_contains_success() {
-		fail("Not yet implemented");
+		String firstWord = "any";
+		String secondWord = "anything";
+		String thirdWord = "bye";
+		String forthWord = "how";
+		
+		target.insert(firstWord);
+		Assert.assertEquals(true, target.contains(firstWord));
+		Assert.assertEquals(false, target.contains(secondWord));
+		Assert.assertEquals(false, target.contains(thirdWord));
+		Assert.assertEquals(false, target.contains(forthWord));
+		
+		target.insert(secondWord);
+		Assert.assertEquals(true, target.contains(firstWord));
+		Assert.assertEquals(true, target.contains(secondWord));
+		Assert.assertEquals(false, target.contains(thirdWord));
+		Assert.assertEquals(false, target.contains(forthWord));
+		
+		target.insert(forthWord);
+		Assert.assertEquals(true, target.contains(firstWord));
+		Assert.assertEquals(true, target.contains(secondWord));
+		Assert.assertEquals(false, target.contains(thirdWord));
+		Assert.assertEquals(true, target.contains(forthWord));
 	}
 	
 	@Test
-	@Ignore
-	public void test_contains_error() {
-		fail("Not yet implemented");
+	public void test_contains_targetIsEmpty() {
+		Assert.assertEquals(false, target.contains("house"));
+	}
+	
+	@Test
+	public void test_contains_inputIsNull() {
+		Assert.assertEquals(false, target.contains(null));
 	}
 
 	@Test
