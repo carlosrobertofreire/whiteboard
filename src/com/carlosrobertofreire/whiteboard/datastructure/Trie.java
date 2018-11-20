@@ -94,7 +94,7 @@ public class Trie {
 		if (current.children[index] == null) {
 			throw new IllegalArgumentException("Word does not exist in the Trie!");
 		} else {
-			delete(current.children[index], word, position++);
+			delete(current.children[index], word, ++position);
 		}
 		if (position == (word.length() - 1)) {
 			if (isLeaf(current)) {
