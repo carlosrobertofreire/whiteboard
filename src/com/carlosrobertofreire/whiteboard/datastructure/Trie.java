@@ -67,8 +67,8 @@ public class Trie {
 			if (index < 0 || index > 25) {
 				return false;
 			}
-		}		
-		return true;			
+		}
+		return true;
 	}
 
 	private boolean isEmpty() {
@@ -94,7 +94,8 @@ public class Trie {
 		if (current.children[index] == null) {
 			throw new IllegalArgumentException("Word does not exist in the Trie!");
 		} else {
-			delete(current.children[index], word, ++position);
+			int nextPosition = position + 1;
+			delete(current.children[index], word, nextPosition);
 		}
 		if (position == (word.length() - 1)) {
 			if (isLeaf(current)) {
@@ -113,8 +114,9 @@ public class Trie {
 	}
 
 	private boolean isLeaf(TrieNode node) {
-		if (node == null)
+		if (node == null) {
 			throw new IllegalArgumentException("Node is null!");
+		}
 		for (int i = 0; i < node.children.length; i++) {
 			if (node.children[i] != null) {
 				return false;
