@@ -102,21 +102,87 @@ public class TrieTest {
 	}
 
 	@Test
-	@Ignore
-	public void test_delete_success() {
-		fail("Not yet implemented");
+	public void test_delete_targetWithDifferentWords_success() {
+		String anyWord = "any";
+		String carWord = "car";
+		String dadWord = "dad";
+			
+		target.insert(anyWord);
+		target.insert(carWord);
+		target.insert(dadWord);
+		
+		Assert.assertEquals(true, target.contains(anyWord));
+		Assert.assertEquals(true, target.contains(carWord));
+		Assert.assertEquals(true, target.contains(dadWord));
+		
+		target.delete(dadWord);
+		Assert.assertEquals(true, target.contains(anyWord));
+		Assert.assertEquals(true, target.contains(carWord));
+		Assert.assertEquals(false, target.contains(dadWord));
+		
+		target.delete(carWord);
+		Assert.assertEquals(true, target.contains(anyWord));
+		Assert.assertEquals(false, target.contains(carWord));
+		
+		target.delete(anyWord);
+		Assert.assertEquals(false, target.contains(anyWord));
 	}
 	
 	@Test
-	@Ignore
+	public void test_delete_shortFirst_targetWithRelatedWords_success() {
+		String carWord = "car";
+		String cardWord = "Card";
+		String cabWord = "CAB";
+				
+		target.insert(carWord);
+		target.insert(cardWord);
+		target.insert(cabWord);
+		
+		target.delete(carWord);
+		Assert.assertEquals(false, target.contains(carWord));
+		Assert.assertEquals(true, target.contains(cardWord));
+		Assert.assertEquals(true, target.contains(cabWord));
+		
+		target.delete(cabWord);
+		Assert.assertEquals(true, target.contains(cardWord));
+		Assert.assertEquals(false, target.contains(cabWord));		
+	}
+	
+	@Test
+	public void test_delete_longFirst_targetWithRelatedWords_success() {
+		String anythingWord = "anything";
+		String anyWord = "any";
+		String antWord = "CAB";
+				
+		target.insert(anythingWord);
+		target.insert(anyWord);
+		target.insert(antWord);
+		
+		target.delete(anythingWord);
+		Assert.assertEquals(false, target.contains(anythingWord));
+		Assert.assertEquals(true, target.contains(anyWord));
+		Assert.assertEquals(true, target.contains(antWord));
+		
+		target.delete(anyWord);
+		Assert.assertEquals(false, target.contains(anyWord));
+		Assert.assertEquals(true, target.contains(antWord));		
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
 	public void test_delete_inputIsNull() {
-		fail("Not yet implemented");
+		target.insert("test");
+		target.delete(null);
 	}
 	
-	@Test
-	@Ignore
+	@Test(expected = IllegalArgumentException.class)
 	public void test_delete_inputIsInvalid() {
-		fail("Not yet implemented");
+		target.insert("test");
+		target.delete("Itnull is invalid");
 	}
 
+	@Test(expected = IllegalStateException.class)
+	public void test_delete_targetIsEmpty() {
+		target.delete("empty");
+	}
 }
