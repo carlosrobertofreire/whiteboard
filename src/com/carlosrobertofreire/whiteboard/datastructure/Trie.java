@@ -98,17 +98,17 @@ public class Trie {
 			delete(current.children[index], word, nextPosition);
 		}
 		if (position == (word.length() - 1)) {
-			if (isLeaf(current)) {
-				current = null;
+			if (isLeaf(current.children[index])) {
+				current.children[index] = null;
 			} else {
-				current.isCompleteWord = false;
+				current.children[index].isCompleteWord = false;
 			}
 		} else {
-			if (current.isCompleteWord) {
+			if (current.children[index].isCompleteWord) {
 				return;
 			}
-			if (isLeaf(current)) {
-				current = null;
+			if (isLeaf(current.children[index])) {
+				current.children[index] = null;
 			}
 		}
 	}
