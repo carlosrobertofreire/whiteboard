@@ -20,6 +20,11 @@ public class Trie {
 
 	private TrieNode root;
 
+	/**
+	 * O(a * n)
+	 * a = length of word
+	 * n = total number of words
+	 */
 	public void insert(String word) {
 		if (!isValid(word)) {
 			throw new IllegalArgumentException("Invalid word!");
@@ -40,6 +45,11 @@ public class Trie {
 		currentTrieNode.isCompleteWord = true;
 	}
 
+	/**
+	 * O(a * n)
+	 * a = length of word
+	 * n = total number of words
+	 */
 	public boolean contains(String word) {
 		if (isEmpty() || !isValid(word)) {
 			return false;
@@ -75,6 +85,11 @@ public class Trie {
 		return root == null;
 	}
 
+	/**
+	 * O(a * n)
+	 * a = length of word
+	 * n = total number of words
+	 */
 	public void delete(String word) {
 		if (isEmpty()) {
 			throw new IllegalStateException("Trie is empty!");
