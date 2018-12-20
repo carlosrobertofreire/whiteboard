@@ -80,9 +80,6 @@ public class Graph {
 	public void addEdge(int source, int destination) {
 		Node sourceNode = find(source);
 		Node destinationNode = find(destination);
-		if (sourceNode == null || destinationNode == null) {
-			throw new IllegalArgumentException("Source or destination not exist in the Graph");
-		}
 		sourceNode.addChild(destinationNode);
 		if (!isDirected) {
 			destinationNode.addChild(sourceNode);
@@ -93,9 +90,6 @@ public class Graph {
 	 * O(V + E), where V = Number of Vertices (Nodes) and E = Number of Edges
 	 */
 	public void removeNode(int value) {
-		if (!contains(value)) {
-			throw new IllegalArgumentException("Node does not exist in the Graph!");
-		}
 		int index = getIndex(nodes, value);
 		if (index != size - 1) {
 			for (int i = index; i < size - 1; i++) {
@@ -173,7 +167,7 @@ public class Graph {
 	 */
 	private static int getIndex(Node[] nodes, int value) {
 		for (int i = 0; i < nodes.length; i++) {
-			if (nodes[i].value == value) {
+			if (nodes[i] != null && nodes[i].value == value) {
 				return i;
 			}
 		}
