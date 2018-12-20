@@ -7,7 +7,7 @@ public class Graph {
 	class Node {
 		int value;
 		Node[] children;
-		private int size;
+		private int childrenSize;
 
 		public Node(int value) {
 			this.value = value;
@@ -18,13 +18,13 @@ public class Graph {
 			if (isAdjacency(newChild.value)) {
 				return;
 			}
-			this.ensureExtraCapacity();
-			children[this.size] = newChild;
-			this.size++;
+			children = ensureDynamicCapacity(children, childrenSize);
+			children[childrenSize] = newChild;
+			childrenSize++;
 		}
 
 		public boolean isAdjacency(int value) {
-			for (int i = 0; i < this.size; i++) {
+			for (int i = 0; i < childrenSize; i++) {
 				if (children[i].value == value) {
 					return true;
 				}
@@ -32,46 +32,18 @@ public class Graph {
 			return false;
 		}
 
-		private void ensureExtraCapacity() {
-			if (this.size == children.length) {
-				Node[] newArray = new Node[children.length * 2];
-				for (int i = 0; i < children.length; i++) {
-					newArray[i] = children[i];
-				}
-				children = newArray;
-			}
-		}
-
 		public void removeAdjacency(int value) {
-			int index = getIndex(value);
-			if (index != this.size - 1) {
-				for (int i = index; i < this.size - 1; i++) {
+			int index = getIndex(children, value);
+			if (index != childrenSize - 1) {
+				for (int i = index; i < childrenSize - 1; i++) {
 					children[i] = children[i + 1];
 				}
 			}
-			children[this.size - 1] = null;
-			this.size--;
-			shrink();
+			children[childrenSize - 1] = null;
+			childrenSize--;
+			children = ensureDynamicCapacity(children, childrenSize);
 		}
 
-		private int getIndex(int value) {
-			for (int i = 0; i < children.length; i++) {
-				if (children[i] != null && children[i].value == value) {
-					return i;
-				}
-			}
-			throw new IllegalArgumentException("Value does not exist in the Adjacency List!");
-		}
-
-		private void shrink() {
-			if (this.size <= children.length / 4) {
-				Node[] newArray = new Node[children.length / 2];
-				for (int i = 0; i < this.size; i++) {
-					newArray[i] = children[i];
-				}
-				children = newArray;
-			}
-		}
 	}
 
 	private Node[] nodes;
@@ -97,7 +69,7 @@ public class Graph {
 		if (contains(value)) {
 			throw new IllegalArgumentException("Node already exists!");
 		}
-		ensureExtraCapacity();
+		nodes = ensureDynamicCapacity(nodes, size);
 		nodes[size] = new Node(value);
 		size++;
 	}
@@ -124,7 +96,7 @@ public class Graph {
 		if (!contains(value)) {
 			throw new IllegalArgumentException("Node does not exist in the Graph!");
 		}
-		int index = getIndex(value);
+		int index = getIndex(nodes, value);
 		if (index != size - 1) {
 			for (int i = index; i < size - 1; i++) {
 				nodes[i] = nodes[i + 1];
@@ -132,22 +104,10 @@ public class Graph {
 		}
 		nodes[size - 1] = null;
 		size--;
-		shrink();
+		nodes = ensureDynamicCapacity(nodes, size);
 		for (int i = 0; i < size; i++) {
 			removeEdge(nodes[i].value, value);
 		}
-	}
-
-	/*
-	 * O(V), where V = Number of Vertices (Nodes)
-	 */
-	private int getIndex(int value) {
-		for (int i = 0; i < nodes.length; i++) {
-			if (nodes[i].value == value) {
-				return i;
-			}
-		}
-		throw new IllegalArgumentException("Value does not exist in the Graph!");
 	}
 
 	/*
@@ -211,27 +171,34 @@ public class Graph {
 	/*
 	 * O(V), where V = Number of Vertices (Nodes)
 	 */
-	private void ensureExtraCapacity() {
-		if (this.size == nodes.length) {
-			Node[] newArray = new Node[nodes.length * 2];
-			for (int i = 0; i < size; i++) {
-				newArray[i] = nodes[i];
+	private static int getIndex(Node[] nodes, int value) {
+		for (int i = 0; i < nodes.length; i++) {
+			if (nodes[i].value == value) {
+				return i;
 			}
-			nodes = newArray;
 		}
+		throw new IllegalArgumentException("Value does not exist in the Graph!");
 	}
 
 	/*
 	 * O(V), where V = Number of Vertices (Nodes)
 	 */
-	private void shrink() {
-		if (this.size <= nodes.length / 4) {
-			Node[] newArray = new Node[nodes.length / 2];
-			for (int i = 0; i < size; i++) {
-				newArray[i] = nodes[i];
-			}
-			nodes = newArray;
+	private static Node[] ensureDynamicCapacity(Node[] nodes, int currentSize) {
+		if (currentSize == nodes.length) {
+			return resizeArray(nodes, currentSize, nodes.length * 2);
+		} else if (currentSize <= nodes.length / 4) {
+			return resizeArray(nodes, currentSize, nodes.length / 2);
 		}
+		return nodes;
+	}
+
+	private static Node[] resizeArray(Node[] nodes, int currentSize, int newCapacity) {
+		Node[] newArray = new Node[newCapacity];
+		for (int i = 0; i < currentSize; i++) {
+			newArray[i] = nodes[i];
+		}
+		return newArray;
+
 	}
 
 }
