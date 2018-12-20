@@ -1,5 +1,9 @@
 package com.carlosrobertofreire.whiteboard.datastructure;
 
+/**
+ * @author carlosrobertofreire
+ *
+ */
 public class Graph {
 
 	private static int INITIAL_CAPACITY = 10;
