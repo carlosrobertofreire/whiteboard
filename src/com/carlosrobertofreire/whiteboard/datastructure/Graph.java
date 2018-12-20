@@ -56,7 +56,7 @@ public class Graph {
 
 		private int getIndex(int value) {
 			for (int i = 0; i < children.length; i++) {
-				if (children[i].value == value) {
+				if (children[i] != null && children[i].value == value) {
 					return i;
 				}
 			}
@@ -155,10 +155,16 @@ public class Graph {
 	 */
 	public void removeEdge(int source, int destination) {
 		Node sourceNode = find(source);
-		sourceNode.removeAdjacency(destination);
-		if (isDirected) {
-			Node destinationNode = find(destination);
-			destinationNode.removeAdjacency(source);
+		if (sourceNode.isAdjacency(destination)) {
+			sourceNode.removeAdjacency(destination);
+		}
+		if (!isDirected) {
+			if (contains(destination)) {
+				Node destinationNode = find(destination);
+				if (destinationNode.isAdjacency(source)) {
+					destinationNode.removeAdjacency(source);
+				}
+			}
 		}
 	}
 
@@ -167,7 +173,7 @@ public class Graph {
 	 */
 	public boolean contains(int value) {
 		for (int i = 0; i < nodes.length; i++) {
-			if (nodes[i].value == value) {
+			if (nodes[i] != null && nodes[i].value == value) {
 				return true;
 			}
 		}
@@ -179,7 +185,7 @@ public class Graph {
 	 */
 	private Node find(int value) {
 		for (int i = 0; i < nodes.length; i++) {
-			if (nodes[i].value == value) {
+			if (nodes[i] != null && nodes[i].value == value) {
 				return nodes[i];
 			}
 		}
