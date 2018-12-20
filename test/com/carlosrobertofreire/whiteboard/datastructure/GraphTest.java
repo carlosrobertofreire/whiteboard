@@ -136,7 +136,7 @@ public class GraphTest {
 		for (int i = 1; i < 100; i++) {
 			target.addNode(i);
 		}
-		
+
 		for (int i = 1; i < 100; i++) {
 			for (int k = i + 1; k < 99; k++) {
 				target.addEdge(i, k + 1);
@@ -157,7 +157,7 @@ public class GraphTest {
 		Assert.assertEquals(false, target.hasEdge(15, 19));
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void test_hasEdge_inputsAreInvalid() {
 		target.hasEdge(5, 7);
 	}
