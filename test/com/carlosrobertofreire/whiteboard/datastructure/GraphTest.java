@@ -27,6 +27,13 @@ public class GraphTest {
 		Assert.assertEquals(false, target.contains(firstValue + 21));
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void test_addNode_duplicatedValue() {
+		int firstValue = 7;
+		target.addNode(firstValue);
+		target.addNode(firstValue);
+	}
+
 	@Test
 	public void test_addEdge_success() {
 		for (int i = 1; i < 600; i++) {
@@ -62,6 +69,11 @@ public class GraphTest {
 		target.addNode(2);
 		target.addNode(10);
 		target.addEdge(2, 23);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_addEdge_inputsDoesNotExist() {
+		target.addEdge(100, 2);
 	}
 
 	@Test
