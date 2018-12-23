@@ -18,8 +18,7 @@ public class DynamicArray {
 	}
 
 	/**
-	 * Average Case O(1) - Constant
-	 * Worst Case O(n) - Linear
+	 * O(1) - Constant
 	 */
 	public int add(int value) {
 		ensureDynamicCapacity();
