@@ -21,9 +21,7 @@ public class Trie {
 	private TrieNode root;
 
 	/**
-	 * O(a * n)
-	 * a = length of word
-	 * n = total number of words
+	 * O(A * N), where A = length of word and N = total number of words
 	 */
 	public void insert(String word) {
 		if (!isValid(word)) {
@@ -46,9 +44,7 @@ public class Trie {
 	}
 
 	/**
-	 * O(a * n)
-	 * a = length of word
-	 * n = total number of words
+	 * O(A * N), where A = length of word and N = total number of words
 	 */
 	public boolean contains(String word) {
 		if (isEmpty() || !isValid(word)) {
@@ -86,9 +82,7 @@ public class Trie {
 	}
 
 	/**
-	 * O(a * n)
-	 * a = length of word
-	 * n = total number of words
+	 * O(A * N), where A = length of word and N = total number of words
 	 */
 	public void delete(String word) {
 		if (isEmpty()) {
