@@ -10,19 +10,16 @@ public class MinHeapTest {
 
 	@Before
 	public void setUp() throws Exception {
-		target = new MinHeap(10);
+		target = new MinHeap();
 	}
 
 	@Test
 	public void test_insert_success() {
 		Assert.assertEquals(0, target.getSize());
-		target.insert(40);
-		Assert.assertEquals(1, target.getSize());
-		target.insert(86);
-		Assert.assertEquals(2, target.getSize());
-		target.insert(10);
-		target.insert(5);
-		Assert.assertEquals(4, target.getSize());
+		for (int i = 1; i < 400; i++) {
+			target.insert(i);
+		}
+		Assert.assertEquals(399, target.getSize());
 	}
 
 	@Test

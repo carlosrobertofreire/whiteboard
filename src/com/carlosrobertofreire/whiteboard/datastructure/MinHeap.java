@@ -7,12 +7,12 @@ package com.carlosrobertofreire.whiteboard.datastructure;
 public class MinHeap {
 
 	private int[] data;
-	private int capacity;
 	private int size;
 
-	public MinHeap(int capacity) {
-		this.capacity = capacity;
-		data = new int[capacity];
+	private static int INITIAL_CAPACITY = 10;
+
+	public MinHeap() {
+		data = new int[INITIAL_CAPACITY];
 	}
 
 	private int getParentIndex(int currentIndex) {
@@ -98,8 +98,8 @@ public class MinHeap {
 	}
 
 	private void ensureExtraCapacity() {
-		if (size == capacity) {
-			int[] newData = new int[capacity * 2];
+		if (size == data.length) {
+			int[] newData = new int[data.length * 2];
 			for (int i = 0; i < size; i++) {
 				newData[i] = data[i];
 			}
