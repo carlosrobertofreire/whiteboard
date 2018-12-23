@@ -21,6 +21,19 @@ public class HashtableTest {
 		target.put("Lion", 1);
 		Assert.assertEquals(true, target.containsKey(firstKey));
 		Assert.assertEquals(false, target.containsKey("Bear"));
+
+		for (int i = 0; i < 300; i++) {
+			target.put("Key" + i, i);
+		}
+
+		Assert.assertEquals(33, target.get("Key33"));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_put_inputIsDuplicated() {
+		String firstKey = "Dog";
+		target.put(firstKey, 7);
+		target.put(firstKey, 12);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -51,6 +64,11 @@ public class HashtableTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void test_get_inputIsInvalid() {
 		target.get("");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_get_inputDoesNotExist() {
+		target.get("Cat");
 	}
 
 	@Test
@@ -99,6 +117,19 @@ public class HashtableTest {
 		Assert.assertEquals(true, target.containsKey(firstKey));
 		Assert.assertEquals(true, target.containsKey(thirdKey));
 		Assert.assertEquals(7, target.get(firstKey));
+		
+		for (int i = 0; i < 300; i++) {
+			target.put("Key" + i, i);
+		}
+		
+		Assert.assertEquals(87, target.get("Key87"));
+		
+		for (int i = 0; i < 150; i++) {
+			target.delete("Key" + i);
+		}
+		
+		Assert.assertEquals(false, target.containsKey("Key87"));
+
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -109,6 +140,11 @@ public class HashtableTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void test_delete_inputIsInvalid() {
 		target.delete("");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_delete_inputDoesNotExist() {
+		target.delete("Cat");
 	}
 
 }
