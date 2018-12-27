@@ -249,6 +249,7 @@ public class Graph {
 		Node sourceNode = find(source);
 		Node destinationNode = find(destination);
 		HashSet<Integer> visited = new HashSet<Integer>();
+		System.out.print("Visited: ");
 		return hasPathDFS(sourceNode, destinationNode, visited);
 	}
 
@@ -257,6 +258,7 @@ public class Graph {
 			return false;
 		}
 		visited.add(source.value);
+		System.out.print(source.value + " ");
 		if (source.value == destination.value) {
 			return true;
 		}
@@ -278,8 +280,10 @@ public class Graph {
 		visited.add(sourceNode.value);
 		java.util.LinkedList<Node> toVisit = new java.util.LinkedList<Node>();
 		toVisit.add(sourceNode); // Enqueue
+		System.out.print("Visited: ");
 		while (toVisit.size() != 0) {
 			Node currentNode = toVisit.poll(); // Dequeue
+			System.out.print(currentNode.value + " ");
 			if (currentNode.value == destinationNode.value) {
 				return true;
 			}
