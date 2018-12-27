@@ -202,7 +202,7 @@ public class Graph {
 	}
 
 	/*
-	 * O(V * E), where V = Number of Vertices (Nodes) and E = Number of Edges
+	 * O(V + E), where V = Number of Vertices (Nodes) and E = Number of Edges
 	 */
 	public void printDFS(int value) {
 		Node node = find(value);
@@ -222,7 +222,7 @@ public class Graph {
 	}
 
 	/*
-	 * O(V * E), where V = Number of Vertices (Nodes) and E = Number of Edges
+	 * O(V + E), where V = Number of Vertices (Nodes) and E = Number of Edges
 	 */
 	public void printBFS(int value) {
 		Node node = find(value);
@@ -243,7 +243,7 @@ public class Graph {
 	}
 
 	/*
-	 * O(V * E), where V = Number of Vertices (Nodes) and E = Number of Edges
+	 * O(V + E), where V = Number of Vertices (Nodes) and E = Number of Edges
 	 */
 	public boolean hasPathDFS(int source, int destination) {
 		Node sourceNode = find(source);
@@ -271,7 +271,7 @@ public class Graph {
 	}
 
 	/*
-	 * O(V * E), where V = Number of Vertices (Nodes) and E = Number of Edges
+	 * O(V + E), where V = Number of Vertices (Nodes) and E = Number of Edges
 	 */
 	public boolean hasPathBFS(int source, int destination) {
 		Node sourceNode = find(source);
