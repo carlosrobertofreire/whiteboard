@@ -232,7 +232,7 @@ public class Graph {
 		toVisit.add(node); // Enqueue
 		while (toVisit.size() != 0) {
 			Node currentNode = toVisit.poll(); // Dequeue
-			System.out.println(currentNode.value + " ");
+			System.out.print(currentNode.value + " ");
 			for (Node child : currentNode.children) {
 				if (child != null && !visited.contains(child.value)) {
 					visited.add(child.value);
