@@ -214,11 +214,11 @@ public class Graph {
 		if (node == null || visited.contains(node.value)) {
 			return;
 		}
+		System.out.print(node.value + " ");
 		visited.add(node.value);
 		for (Node child : node.children) {
 			printDFS(child, visited);
 		}
-		System.out.println(node.value + " ");
 	}
 
 	/*
