@@ -1,5 +1,7 @@
 package com.carlosrobertofreire.whiteboard.datastructure;
 
+import java.util.HashSet;
+
 /**
  * @author carlosrobertofreire
  *
@@ -197,6 +199,98 @@ public class Graph {
 		}
 		return newArray;
 
+	}
+
+	/*
+	 * O(V * E), where V = Number of Vertices (Nodes) and E = Number of Edges
+	 */
+	public void printDFS(int value) {
+		Node node = find(value);
+		HashSet<Integer> visited = new HashSet<Integer>();
+		printDFS(node, visited);
+	}
+
+	private void printDFS(Node node, HashSet<Integer> visited) {
+		if (node == null || visited.contains(node.value)) {
+			return;
+		}
+		visited.add(node.value);
+		for (Node child : node.children) {
+			printDFS(child, visited);
+		}
+		System.out.println(node.value + " ");
+	}
+
+	/*
+	 * O(V * E), where V = Number of Vertices (Nodes) and E = Number of Edges
+	 */
+	public void printBFS(int value) {
+		Node node = find(value);
+		HashSet<Integer> visited = new HashSet<Integer>();
+		visited.add(node.value);
+		java.util.LinkedList<Node> toVisit = new java.util.LinkedList<Node>();
+		toVisit.add(node); // Enqueue
+		while (toVisit.size() != 0) {
+			Node currentNode = toVisit.poll(); // Dequeue
+			System.out.println(currentNode.value + " ");
+			for (Node child : currentNode.children) {
+				if (child != null && !visited.contains(child.value)) {
+					visited.add(child.value);
+					toVisit.add(child); // Enqueue
+				}
+			}
+		}
+	}
+
+	/*
+	 * O(V * E), where V = Number of Vertices (Nodes) and E = Number of Edges
+	 */
+	public boolean hasPathDFS(int source, int destination) {
+		Node sourceNode = find(source);
+		Node destinationNode = find(destination);
+		HashSet<Integer> visited = new HashSet<Integer>();
+		return hasPathDFS(sourceNode, destinationNode, visited);
+	}
+
+	private boolean hasPathDFS(Node source, Node destination, HashSet<Integer> visited) {
+		if (source == null || visited.contains(source.value)) {
+			return false;
+		}
+		visited.add(source.value);
+		if (source.value == destination.value) {
+			return true;
+		}
+		for (Node child : source.children) {
+			if (hasPathDFS(child, destination, visited)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/*
+	 * O(V * E), where V = Number of Vertices (Nodes) and E = Number of Edges
+	 */
+	public boolean hasPathBFS(int source, int destination) {
+		Node sourceNode = find(source);
+		Node destinationNode = find(destination);
+		HashSet<Integer> visited = new HashSet<Integer>();
+		visited.add(sourceNode.value);
+		java.util.LinkedList<Node> toVisit = new java.util.LinkedList<Node>();
+		toVisit.add(sourceNode); // Enqueue
+		while (toVisit.size() != 0) {
+			Node currentNode = toVisit.poll(); // Dequeue
+			if (currentNode.value == destinationNode.value) {
+				return true;
+			}
+			for (Node child : currentNode.children) {
+				if (child != null && !visited.contains(child.value)) {
+					visited.add(child.value);
+					toVisit.add(child); // Enqueue
+				}
+			}
+		}
+		return false;
 	}
 
 }
