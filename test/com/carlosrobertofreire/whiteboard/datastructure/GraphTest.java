@@ -205,14 +205,14 @@ public class GraphTest {
 
 	@Test
 	public void test_printDFS_connectedTarget_success() {
-		createConnectedGraph();
+		createConnectedTarget();
 		target.printDFS(1);
 		Assert.assertEquals("1 2 4 5 6 3 ", outContent.toString());
 	}
 
 	@Test
-	public void test_printDFS_notConnectedTarget_success() {
-		createNotConnectedGraph();
+	public void test_printDFS_disconnectednotCTarget_success() {
+		createDisconnectedTarget();
 		target.printDFS(10);
 		Assert.assertEquals("10 1 3 2 ", outContent.toString());
 	}
@@ -230,14 +230,14 @@ public class GraphTest {
 
 	@Test
 	public void test_printBFS_connectedTarget_success() {
-		createConnectedGraph();
+		createConnectedTarget();
 		target.printBFS(1);
 		Assert.assertEquals("1 2 3 4 5 6 ", outContent.toString());
 	}
 
 	@Test
-	public void test_printBFS_notConnectedTarget_success() {
-		createNotConnectedGraph();
+	public void test_printBFS_disconnectedTarget_success() {
+		createDisconnectedTarget();
 		target.printBFS(10);
 		Assert.assertEquals("10 1 2 3 ", outContent.toString());
 	}
@@ -270,14 +270,14 @@ public class GraphTest {
 
 	@Test
 	public void test_hasPathDFS_connectedTarget_success() {
-		createConnectedGraph();
+		createConnectedTarget();
 		Assert.assertEquals(true, target.hasPathDFS(1, 3));
 		Assert.assertEquals("Visited: 1 2 4 5 6 3 ", outContent.toString());
 	}
 
 	@Test
-	public void test_hasPathDFS_notConnectedTarget_success() {
-		createNotConnectedGraph();
+	public void test_hasPathDFS_diconnectedTarget_success() {
+		createDisconnectedTarget();
 		Assert.assertEquals(true, target.hasPathDFS(1, 3));
 		Assert.assertEquals("Visited: 1 10 2 3 ", outContent.toString());
 		Assert.assertEquals(false, target.hasPathDFS(1, 6));
@@ -311,20 +311,20 @@ public class GraphTest {
 
 	@Test
 	public void test_hasPathBFS_connectedTarget_success() {
-		createConnectedGraph();
+		createConnectedTarget();
 		Assert.assertEquals(true, target.hasPathBFS(1, 3));
 		Assert.assertEquals("Visited: 1 2 3 ", outContent.toString());
 	}
 
 	@Test
-	public void test_hasPathBFS_notConnectedTarget_success() {
-		createNotConnectedGraph();
+	public void test_hasPathBFS_disconnectedTarget_success() {
+		createDisconnectedTarget();
 		Assert.assertEquals(true, target.hasPathBFS(1, 3));
 		Assert.assertEquals("Visited: 1 10 3 ", outContent.toString());
 		Assert.assertEquals(false, target.hasPathBFS(1, 6));
 	}
 
-	private void createNotConnectedGraph() {
+	private void createDisconnectedTarget() {
 		target.addNode(10);
 		target.addNode(1);
 		target.addNode(2);
@@ -342,7 +342,7 @@ public class GraphTest {
 		target.addEdge(5, 6);
 	}
 
-	private void createConnectedGraph() {
+	private void createConnectedTarget() {
 		target.addNode(1);
 		target.addNode(2);
 		target.addNode(3);
