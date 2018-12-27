@@ -1,5 +1,9 @@
 package com.carlosrobertofreire.whiteboard.datastructure;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,9 +12,23 @@ public class GraphTest {
 
 	Graph target = null;
 
+	private PrintStream sysOut;
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+	@Before
+	public void setUpStreams() {
+		sysOut = System.out;
+		System.setOut(new PrintStream(outContent));
+	}
+
 	@Before
 	public void setUp() throws Exception {
 		target = new Graph();
+	}
+
+	@After
+	public void revertStreams() {
+		System.setOut(sysOut);
 	}
 
 	@Test
@@ -172,6 +190,174 @@ public class GraphTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void test_hasEdge_inputsAreInvalid() {
 		target.hasEdge(5, 7);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_printDFS_inputDoesNotExist() {
+		target.addNode(10);
+		target.printDFS(5);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_printDFS_targetIsEmpty() {
+		target.printDFS(3);
+	}
+
+	@Test
+	public void test_printDFS_connectedTarget_success() {
+		createConnectedGraph();
+		target.printDFS(1);
+		Assert.assertEquals("1 2 4 5 6 3 ", outContent.toString());
+	}
+
+	@Test
+	public void test_printDFS_notConnectedTarget_success() {
+		createNotConnectedGraph();
+		target.printDFS(10);
+		Assert.assertEquals("10 1 3 2 ", outContent.toString());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_printBFS_inputDoesNotExist() {
+		target.addNode(10);
+		target.printBFS(5);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_printBFS_targetIsEmpty() {
+		target.printDFS(3);
+	}
+
+	@Test
+	public void test_printBFS_connectedTarget_success() {
+		createConnectedGraph();
+		target.printBFS(1);
+		Assert.assertEquals("1 2 3 4 5 6 ", outContent.toString());
+	}
+
+	@Test
+	public void test_printBFS_notConnectedTarget_success() {
+		createNotConnectedGraph();
+		target.printBFS(10);
+		Assert.assertEquals("10 1 2 3 ", outContent.toString());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_hasPathDFS_inputsAreInvalid() {
+		target.addNode(2);
+		target.addNode(7);
+		target.hasPathDFS(5, 10);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_hasPathDFS_targetIsEmpty() {
+		target.hasPathDFS(5, 7);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_hasPathDFS_sourceDoesNotExist() {
+		target.addNode(2);
+		target.addNode(7);
+		target.hasPathDFS(5, 7);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_hasPathDFS_destinationDoesNotExist() {
+		target.addNode(2);
+		target.addNode(7);
+		target.hasPathDFS(2, 8);
+	}
+
+	@Test
+	public void test_hasPathDFS_connectedTarget_success() {
+		createConnectedGraph();
+		Assert.assertEquals(true, target.hasPathDFS(1, 3));
+		Assert.assertEquals("Visited: 1 2 4 5 6 3 ", outContent.toString());
+	}
+
+	@Test
+	public void test_hasPathDFS_notConnectedTarget_success() {
+		createNotConnectedGraph();
+		Assert.assertEquals(true, target.hasPathDFS(1, 3));
+		Assert.assertEquals("Visited: 1 10 2 3 ", outContent.toString());
+		Assert.assertEquals(false, target.hasPathDFS(1, 6));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_hasPathBFS_inputsAreInvalid() {
+		target.addNode(2);
+		target.addNode(7);
+		target.hasPathBFS(5, 10);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_hasPathBFS_targetIsEmpty() {
+		target.hasPathBFS(5, 7);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_hasPathBFS_sourceDoesNotExist() {
+		target.addNode(2);
+		target.addNode(7);
+		target.hasPathBFS(5, 7);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_hasPathBFS_destinationDoesNotExist() {
+		target.addNode(2);
+		target.addNode(7);
+		target.hasPathBFS(2, 8);
+	}
+
+	@Test
+	public void test_hasPathBFS_connectedTarget_success() {
+		createConnectedGraph();
+		Assert.assertEquals(true, target.hasPathBFS(1, 3));
+		Assert.assertEquals("Visited: 1 2 3 ", outContent.toString());
+	}
+
+	@Test
+	public void test_hasPathBFS_notConnectedTarget_success() {
+		createNotConnectedGraph();
+		Assert.assertEquals(true, target.hasPathBFS(1, 3));
+		Assert.assertEquals("Visited: 1 10 3 ", outContent.toString());
+		Assert.assertEquals(false, target.hasPathBFS(1, 6));
+	}
+
+	private void createNotConnectedGraph() {
+		target.addNode(10);
+		target.addNode(1);
+		target.addNode(2);
+		target.addNode(3);
+		target.addNode(4);
+		target.addNode(5);
+		target.addNode(6);
+
+		target.addEdge(10, 1);
+		target.addEdge(10, 2);
+		target.addEdge(1, 3);
+		target.addEdge(1, 2);
+		target.addEdge(4, 5);
+		target.addEdge(4, 6);
+		target.addEdge(5, 6);
+	}
+
+	private void createConnectedGraph() {
+		target.addNode(1);
+		target.addNode(2);
+		target.addNode(3);
+		target.addNode(4);
+		target.addNode(5);
+		target.addNode(6);
+
+		target.addEdge(1, 2);
+		target.addEdge(1, 3);
+		target.addEdge(2, 4);
+		target.addEdge(2, 5);
+		target.addEdge(4, 5);
+		target.addEdge(4, 6);
+		target.addEdge(5, 6);
+		target.addEdge(5, 3);
 	}
 
 }
