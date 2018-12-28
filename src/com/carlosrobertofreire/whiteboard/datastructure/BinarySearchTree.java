@@ -70,15 +70,14 @@ public class BinarySearchTree {
 		}
 	}
 
-	private void delete(Node root, int value) {
+	private Node delete(Node root, int value) {
 		if (root == null) {
 			throw new IllegalArgumentException("Value not found in the Tree!");
 		}
 		if (root.data == value) {
 			// Leaf Node
 			if (root.left == null && root.right == null) {
-				root = null;
-				return;
+				return null;
 			}
 
 			// Two Child
@@ -86,7 +85,7 @@ public class BinarySearchTree {
 				int inOrderSuccessorValue = getInOrderSuccessorValue(root);
 				delete(inOrderSuccessorValue);
 				root.data = inOrderSuccessorValue;
-				return;
+				return root;
 			}
 
 			// One Child
@@ -97,12 +96,12 @@ public class BinarySearchTree {
 				root = root.right;
 				root.right = null;
 			}
-			return;
+			return root;
 		}
 		if (value > root.data) {
-			delete(root.right, value);
+			return delete(root.right, value);
 		} else {
-			delete(root.left, value);
+			return delete(root.left, value);
 		}
 	}
 
@@ -110,73 +109,70 @@ public class BinarySearchTree {
 	 * O(log n) - Logarithmic
 	 */
 	public void delete(int value) {
-		delete(root, value);
+		root = delete(root, value);
 	}
 
 	private int getInOrderSuccessorValue(Node root) {
-		if (root == null) {
-			throw new IllegalArgumentException("Node cannot be null!");
-		}
 		return getMinValue(root.right);
 	}
 
 	private int getMinValue(Node root) {
-		if (root == null) {
-			throw new IllegalArgumentException("Node cannot be null!");
-		}
 		if (root.left == null) {
 			return root.data;
 		} else {
 			return getMinValue(root.left);
 		}
 	}
-
-	private void printInOrder(Node root) {
-		if (root != null) {
-			if (root.left != null) {
-				printInOrder(root.left);
-			}
-			System.out.print(root.data + " ");
-			if (root.right != null) {
-				printInOrder(root.right);
-			}
-		}
-	}
-
+	
 	public void printInOrder() {
+		validateIfIsEmpty();
 		printInOrder(root);
 	}
 
-	private void printPreOrder(Node root) {
-		if (root != null) {
-			System.out.print(root.data + " ");
-			if (root.left != null) {
-				printPreOrder(root.left);
-			}
-			if (root.right != null) {
-				printPreOrder(root.right);
-			}
+	private void printInOrder(Node root) {
+		if (root.left != null) {
+			printInOrder(root.left);
 		}
-	}
-
+		System.out.print(root.data + " ");
+		if (root.right != null) {
+			printInOrder(root.right);
+		}
+	}	
+	
 	public void printPreOrder() {
+		validateIfIsEmpty();
 		printPreOrder(root);
 	}
 
-	private void printPostOrder(Node root) {
-		if (root != null) {
-			if (root.left != null) {
-				printPostOrder(root.left);
-			}
-			if (root.right != null) {
-				printPostOrder(root.right);
-			}
-			System.out.print(root.data + " ");
+	private void printPreOrder(Node root) {
+		System.out.print(root.data + " ");
+		if (root.left != null) {
+			printPreOrder(root.left);
 		}
-	}
+		if (root.right != null) {
+			printPreOrder(root.right);
+		}
+	}	
 
 	public void printPostOrder() {
+		validateIfIsEmpty();
 		printPostOrder(root);
+	}
+	
+	private void printPostOrder(Node root) {
+		if (root.left != null) {
+			printPostOrder(root.left);
+		}
+		if (root.right != null) {
+			printPostOrder(root.right);
+		}
+		System.out.print(root.data + " ");
+	}
+	
+	private void validateIfIsEmpty() {
+		if (root == null) {
+			throw new IllegalStateException("Binary Search Tree is empty!");
+		}
 	}
 
 }

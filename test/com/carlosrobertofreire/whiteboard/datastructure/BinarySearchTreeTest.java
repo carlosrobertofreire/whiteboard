@@ -68,15 +68,60 @@ public class BinarySearchTreeTest {
 	}
 
 	@Test
-	public void test_delete_success() {
-		target.insert(30);
-		target.insert(10);
-		target.insert(45);
-		target.insert(60);
-		Assert.assertEquals(true, target.contains(30));
-		target.delete(30);
-		Assert.assertEquals(false, target.contains(30));
-		Assert.assertEquals(true, target.contains(10));
+	public void test_delete_leafNode_success() {
+		createTargetWithSixteenItems();
+		int nodeToDelete = 28;
+		Assert.assertEquals(true, target.contains(nodeToDelete));
+		target.delete(nodeToDelete);
+		Assert.assertEquals(false, target.contains(nodeToDelete));
+	}
+
+	@Test
+	public void test_delete_twoChildNode_inOrderSuccessorRight_success() {
+		createTargetWithSixteenItems();
+		int nodeToDelete = 16;
+		int leftChild = 15;
+		int rightChild = 23;
+		Assert.assertEquals(true, target.contains(nodeToDelete));
+		target.delete(nodeToDelete);
+		Assert.assertEquals(false, target.contains(nodeToDelete));
+		Assert.assertEquals(true, target.contains(leftChild));
+		Assert.assertEquals(true, target.contains(rightChild));
+	}
+	
+	@Test
+	public void test_delete_twoChildNode_inOrderSuccessorLeft_success() {
+		createTargetWithSixteenItems();
+		int nodeToDelete = 40;
+		int leftChild = 38;
+		int rightChild = 43;
+		Assert.assertEquals(true, target.contains(nodeToDelete));
+		target.delete(nodeToDelete);
+		Assert.assertEquals(false, target.contains(nodeToDelete));
+		Assert.assertEquals(true, target.contains(leftChild));
+		Assert.assertEquals(true, target.contains(rightChild));
+	}
+
+	@Test
+	public void test_delete_oneChildRightNode_success() {
+		createTargetWithSixteenItems();
+		int nodeToDelete = 60;
+		int child = 92;
+		Assert.assertEquals(true, target.contains(nodeToDelete));
+		target.delete(nodeToDelete);
+		Assert.assertEquals(false, target.contains(nodeToDelete));
+		Assert.assertEquals(true, target.contains(child));
+	}
+
+	@Test
+	public void test_delete_oneChildLeftNode_success() {
+		createTargetWithSixteenItems();
+		int nodeToDelete = 8;
+		int child = 6;
+		Assert.assertEquals(true, target.contains(nodeToDelete));
+		target.delete(nodeToDelete);
+		Assert.assertEquals(false, target.contains(nodeToDelete));
+		Assert.assertEquals(true, target.contains(child));
 	}
 
 	@Test
@@ -109,6 +154,11 @@ public class BinarySearchTreeTest {
 		Assert.assertEquals("18 20 30 40 ", outContent.toString());
 	}
 
+	@Test(expected = IllegalStateException.class)
+	public void test_printInOrder_targetIsEmpty() {
+		target.printInOrder();
+	}
+
 	@Test
 	public void test_printPreOrder_success() {
 		target.insert(30);
@@ -118,6 +168,11 @@ public class BinarySearchTreeTest {
 		target.printPreOrder();
 		Assert.assertEquals("30 20 18 40 ", outContent.toString());
 
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void test_printPreOrder_targetIsEmpty() {
+		target.printPreOrder();
 	}
 
 	@Test
@@ -130,4 +185,29 @@ public class BinarySearchTreeTest {
 		Assert.assertEquals("18 20 40 30 ", outContent.toString());
 
 	}
+
+	@Test(expected = IllegalStateException.class)
+	public void test_printPostOrder_targetIsEmpty() {
+		target.printPostOrder();
+	}
+
+	private void createTargetWithSixteenItems() {
+		target.insert(30);
+		target.insert(10);
+		target.insert(45);
+		target.insert(60);
+		target.insert(8);
+		target.insert(16);
+		target.insert(40);
+		target.insert(92);
+		target.insert(23);
+		target.insert(15);
+		target.insert(6);
+		target.insert(28);
+		target.insert(12);
+		target.insert(43);
+		target.insert(38);
+		target.insert(42);
+	}
+
 }
