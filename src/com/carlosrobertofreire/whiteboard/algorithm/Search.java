@@ -4,7 +4,7 @@ package com.carlosrobertofreire.whiteboard.algorithm;
  * @author carlosrobertofreire
  *
  */
-public class Searching {
+public class Search {
 
 	/**
 	 * O(log n) - Logarithmic
