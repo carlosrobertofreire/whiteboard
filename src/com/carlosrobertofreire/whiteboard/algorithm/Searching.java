@@ -9,14 +9,14 @@ public class Searching {
 	/**
 	 * O(log n) - Logarithmic
 	 */
-	public static boolean binarySearchRecursive(int[] array, int key) {
+	public boolean binarySearchRecursive(int[] array, int key) {
 		if (array == null || array.length == 0) {
 			throw new IllegalArgumentException("Array must have values!");
 		}
 		return binarySearchRecursive(array, key, 0, array.length - 1);
 	}
 
-	private static boolean binarySearchRecursive(int[] array, int key, int startIndex, int endIndex) {
+	private boolean binarySearchRecursive(int[] array, int key, int startIndex, int endIndex) {
 		if (startIndex > endIndex) {
 			return false;
 		}
@@ -33,7 +33,7 @@ public class Searching {
 	/**
 	 * O(log n) - Logarithmic
 	 */
-	public static boolean binarySearchIterative(int[] array, int key) {
+	public boolean binarySearchIterative(int[] array, int key) {
 		if (array == null || array.length == 0) {
 			throw new IllegalArgumentException("Array must have values!");
 		}
