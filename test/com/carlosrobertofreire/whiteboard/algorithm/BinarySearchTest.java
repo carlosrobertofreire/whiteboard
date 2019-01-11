@@ -4,15 +4,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.carlosrobertofreire.util.ArrayGenerator;
+
 public class BinarySearchTest {
-	
+
 	private BinarySearch target;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		target = new BinarySearch();
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void test_searchRecursive_inputIsNull() {
 		target.searchRecursive(null, 1);
@@ -37,7 +39,7 @@ public class BinarySearchTest {
 
 	@Test
 	public void test_searchRecursive_inputWithFiveItems_success() {
-		int[] fiveItemsArray = createFiveItemsArray();
+		int[] fiveItemsArray = ArrayGenerator.createSortedFiveItemsArray();
 		Assert.assertEquals(true, target.searchRecursive(fiveItemsArray, 9));
 		Assert.assertEquals(true, target.searchRecursive(fiveItemsArray, 5));
 		Assert.assertEquals(true, target.searchRecursive(fiveItemsArray, 16));
@@ -47,7 +49,7 @@ public class BinarySearchTest {
 
 	@Test
 	public void test_searchRecursive_inputWithFiftyItems_success() {
-		int[] fiftyItemsArray = createFiftyItemsArray();
+		int[] fiftyItemsArray = ArrayGenerator.createSequentialArray(50);
 		Assert.assertEquals(true, target.searchRecursive(fiftyItemsArray, 2));
 		Assert.assertEquals(true, target.searchRecursive(fiftyItemsArray, 38));
 		Assert.assertEquals(true, target.searchRecursive(fiftyItemsArray, 49));
@@ -62,7 +64,7 @@ public class BinarySearchTest {
 	public void test_searchIterative_inputIsEmpty() {
 		target.searchIterative(new int[] {}, 1);
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void test_searchIterative_inputIsNull() {
 		target.searchIterative(null, 1);
@@ -82,7 +84,7 @@ public class BinarySearchTest {
 
 	@Test
 	public void test_searchIterative_inputWithFiveItems_success() {
-		int[] fiveItemsArray = createFiveItemsArray();
+		int[] fiveItemsArray = ArrayGenerator.createSortedFiveItemsArray();
 		Assert.assertEquals(true, target.searchIterative(fiveItemsArray, 9));
 		Assert.assertEquals(true, target.searchIterative(fiveItemsArray, 5));
 		Assert.assertEquals(true, target.searchIterative(fiveItemsArray, 16));
@@ -92,7 +94,7 @@ public class BinarySearchTest {
 
 	@Test
 	public void test_searchIterative_inputWithFiftyItems_success() {
-		int[] fiftyItemsArray = createFiftyItemsArray();
+		int[] fiftyItemsArray = ArrayGenerator.createSequentialArray(50);
 		Assert.assertEquals(true, target.searchIterative(fiftyItemsArray, 2));
 		Assert.assertEquals(true, target.searchIterative(fiftyItemsArray, 38));
 		Assert.assertEquals(true, target.searchIterative(fiftyItemsArray, 49));
@@ -101,18 +103,6 @@ public class BinarySearchTest {
 		Assert.assertEquals(false, target.searchIterative(fiftyItemsArray, -1));
 		Assert.assertEquals(false, target.searchIterative(fiftyItemsArray, 51));
 		Assert.assertEquals(false, target.searchIterative(fiftyItemsArray, 0));
-	}
-
-	private int[] createFiveItemsArray() {
-		return new int[] { 3, 5, 6, 9, 16 };
-	}
-
-	private int[] createFiftyItemsArray() {
-		int[] array = new int[50];
-		for (int i = 0; i < array.length; i++) {
-			array[i] = i + 1;
-		}
-		return array;
 	}
 
 }

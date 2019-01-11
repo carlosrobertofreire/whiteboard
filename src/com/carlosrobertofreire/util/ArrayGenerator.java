@@ -14,13 +14,21 @@ public class ArrayGenerator {
 	}
 
 	public static int[] createSortedFiveItemsArray() {
-		return new int[] { 2, 17, 31, 46, 50 };
+		return new int[] { 3, 5, 6, 9, 16  };
 	}
-
+	
 	public static int[] createSortedArrayWithDuplicatedItems() {
 		return new int[] { 2, 2, 4, 8, 21, 30 };
 	}
 
+	public static int[] createSequentialArray(int expectedSize) {
+		int[] array = new int[expectedSize];
+		for (int i = 0; i < array.length; i++) {
+			array[i] = i + 1;
+		}
+		return array;
+	}
+	
 	public static int[] createRandomArrayWithoutDuplicates(int expectedSize, int maxValue) {
 		if (expectedSize > maxValue) {
 			throw new IllegalArgumentException("Expected size cannot be greater than max value!");
