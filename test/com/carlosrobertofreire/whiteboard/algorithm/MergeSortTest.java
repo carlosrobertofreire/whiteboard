@@ -55,7 +55,7 @@ public class MergeSortTest {
 
 	@Test
 	public void test_sort_unsortedInputWithDuplicatedItems_success() {
-		testSort(createUnsortedDuplicatedItemsArray());
+		testSort(createUnsortedArrayWithDuplicatedItems());
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class MergeSortTest {
 
 	@Test
 	public void test_sort_sortedInputWithDuplicatedItems_success() {
-		testSort(createSortedDuplicatedItemsArray());
+		testSort(createSortedArrayWithDuplicatedItems());
 	}
 
 	private void testSort(int[] array) {
@@ -77,7 +77,7 @@ public class MergeSortTest {
 		}
 	}
 
-	private int[] createUnsortedDuplicatedItemsArray() {
+	private int[] createUnsortedArrayWithDuplicatedItems() {
 		return new int[] { 3, 1, 52, 3, 1, 2, 21, 11, 10, 9 };
 	}
 
@@ -85,7 +85,7 @@ public class MergeSortTest {
 		return new int[] { 2, 17, 31, 46, 50 };
 	}
 
-	private int[] createSortedDuplicatedItemsArray() {
+	private int[] createSortedArrayWithDuplicatedItems() {
 		return new int[] { 2, 2, 4, 8, 21, 30 };
 	}
 
