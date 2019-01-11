@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ SearchTest.class, MergeSortTest.class })
+@SuiteClasses({ BinarySearchTest.class, MergeSortTest.class })
 public class AllAlgorithmTests {
 
 }

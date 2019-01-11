@@ -171,7 +171,7 @@ public class BinarySearchTree {
 	
 	private void validateIfIsEmpty() {
 		if (root == null) {
-			throw new IllegalStateException("Binary Search Tree is empty!");
+			throw new IllegalStateException("Binary BinarySearch Tree is empty!");
 		}
 	}
 
