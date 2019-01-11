@@ -2,12 +2,16 @@ package com.carlosrobertofreire.whiteboard.algorithm;
 
 import java.util.Arrays;
 
-public class Sort {
+/**
+ * @author carlosrobertofreire
+ *
+ */
+public class MergeSort {
 
 	/**
 	 * O(n log n) - Linearithmic
 	 */
-	public int[] mergeSort(int[] array) {
+	public int[] sort(int[] array) {
 		if (array == null || array.length == 0) {
 			throw new IllegalArgumentException("Array must have values!");
 		}
@@ -17,8 +21,8 @@ public class Sort {
 		int middleIndex = (array.length - 1) / 2;
 		int[] leftArray = Arrays.copyOfRange(array, 0, middleIndex + 1);
 		int[] rightArray = Arrays.copyOfRange(array, middleIndex + 1, array.length);
-		mergeSort(leftArray);
-		mergeSort(rightArray);
+		sort(leftArray);
+		sort(rightArray);
 		merge(leftArray, rightArray, array);
 		return array;
 	}

@@ -8,36 +8,36 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SortTest {
+public class MergeSortTest {
 
-	Sort target = null;
+	MergeSort target = null;
 
 	@Before
 	public void setUp() throws Exception {
-		target = new Sort();
+		target = new MergeSort();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test_mergeSort_inputIsNull() {
-		target.mergeSort(null);
+		target.sort(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test_mergeSort_inputIsEmpty() {
-		target.mergeSort(new int[0]);
+		target.sort(new int[0]);
 	}
 
 	@Test
 	public void test_mergeSort_inputWithOneItem_success() {
 		int[] arrayWithOneItem = new int[] { 5 };
-		Assert.assertEquals(arrayWithOneItem, target.mergeSort(arrayWithOneItem));
+		Assert.assertEquals(arrayWithOneItem, target.sort(arrayWithOneItem));
 	}
 
 	@Test
 	public void test_mergeSort_unsortedInputWithFiveItems_success() {
 		int[] unsortedArray = new int[] { 7, 4, 10, 3, 16 };
 		int[] expectedSortedArray = new int[] { 3, 4, 7, 10, 16 };
-		int[] sortedArrayByTarget = target.mergeSort(unsortedArray);
+		int[] sortedArrayByTarget = target.sort(unsortedArray);
 		for (int i = 0; i < sortedArrayByTarget.length; i++) {
 			Assert.assertEquals(expectedSortedArray[i], sortedArrayByTarget[i]);
 		}
@@ -71,7 +71,7 @@ public class SortTest {
 	private void testMergeSort(int[] array) {
 		int[] expectedSortedArray = Arrays.copyOf(array, array.length);
 		Arrays.sort(expectedSortedArray);
-		int[] sortedArrayByTarget = target.mergeSort(array);
+		int[] sortedArrayByTarget = target.sort(array);
 		for (int i = 0; i < sortedArrayByTarget.length; i++) {
 			Assert.assertEquals(expectedSortedArray[i], sortedArrayByTarget[i]);
 		}
