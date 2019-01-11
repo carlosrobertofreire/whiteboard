@@ -18,23 +18,23 @@ public class MergeSortTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void test_mergeSort_inputIsNull() {
+	public void test_sort_inputIsNull() {
 		target.sort(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void test_mergeSort_inputIsEmpty() {
+	public void test_sort_inputIsEmpty() {
 		target.sort(new int[0]);
 	}
 
 	@Test
-	public void test_mergeSort_inputWithOneItem_success() {
+	public void test_sort_inputWithOneItem_success() {
 		int[] arrayWithOneItem = new int[] { 5 };
 		Assert.assertEquals(arrayWithOneItem, target.sort(arrayWithOneItem));
 	}
 
 	@Test
-	public void test_mergeSort_unsortedInputWithFiveItems_success() {
+	public void test_sort_unsortedInputWithFiveItems_success() {
 		int[] unsortedArray = new int[] { 7, 4, 10, 3, 16 };
 		int[] expectedSortedArray = new int[] { 3, 4, 7, 10, 16 };
 		int[] sortedArrayByTarget = target.sort(unsortedArray);
@@ -44,31 +44,31 @@ public class MergeSortTest {
 	}
 
 	@Test
-	public void test_mergeSort_unsortedInputWithThirtyItems_success() {
-		testMergeSort(createRandomArrayWithoutDuplicates(30));
+	public void test_sort_unsortedInputWithThirtyItems_success() {
+		testSort(createRandomArrayWithoutDuplicates(30));
 	}
 
 	@Test
-	public void test_mergeSort_unsortedInputWithNinetyItems_success() {
-		testMergeSort(createRandomArrayWithoutDuplicates(90));
+	public void test_sort_unsortedInputWithNinetyItems_success() {
+		testSort(createRandomArrayWithoutDuplicates(90));
 	}
 
 	@Test
-	public void test_mergeSort_unsortedInputWithDuplicatedItems_success() {
-		testMergeSort(createUnsortedDuplicatedItemsArray());
+	public void test_sort_unsortedInputWithDuplicatedItems_success() {
+		testSort(createUnsortedDuplicatedItemsArray());
 	}
 
 	@Test
-	public void test_mergeSort_sortedInputWithFiveItems_success() {
-		testMergeSort(createSortedFiveItemsArray());
+	public void test_sort_sortedInputWithFiveItems_success() {
+		testSort(createSortedFiveItemsArray());
 	}
 
 	@Test
-	public void test_mergeSort_sortedInputWithDuplicatedItems_success() {
-		testMergeSort(createSortedDuplicatedItemsArray());
+	public void test_sort_sortedInputWithDuplicatedItems_success() {
+		testSort(createSortedDuplicatedItemsArray());
 	}
 
-	private void testMergeSort(int[] array) {
+	private void testSort(int[] array) {
 		int[] expectedSortedArray = Arrays.copyOf(array, array.length);
 		Arrays.sort(expectedSortedArray);
 		int[] sortedArrayByTarget = target.sort(array);
