@@ -1,12 +1,12 @@
 package com.carlosrobertofreire.whiteboard.algorithm;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Random;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.carlosrobertofreire.util.ArrayGenerator;
 
 public class MergeSortTest {
 
@@ -45,27 +45,27 @@ public class MergeSortTest {
 
 	@Test
 	public void test_sort_unsortedInputWithThirtyItems_success() {
-		testSort(createRandomArrayWithoutDuplicates(30));
+		testSort(ArrayGenerator.createRandomArrayWithoutDuplicates(30, 300));
 	}
 
 	@Test
 	public void test_sort_unsortedInputWithNinetyItems_success() {
-		testSort(createRandomArrayWithoutDuplicates(90));
+		testSort(ArrayGenerator.createRandomArrayWithoutDuplicates(90, 300));
 	}
 
 	@Test
 	public void test_sort_unsortedInputWithDuplicatedItems_success() {
-		testSort(createUnsortedArrayWithDuplicatedItems());
+		testSort(ArrayGenerator.createUnsortedArrayWithDuplicatedItems());
 	}
 
 	@Test
 	public void test_sort_sortedInputWithFiveItems_success() {
-		testSort(createSortedFiveItemsArray());
+		testSort(ArrayGenerator.createSortedFiveItemsArray());
 	}
 
 	@Test
 	public void test_sort_sortedInputWithDuplicatedItems_success() {
-		testSort(createSortedArrayWithDuplicatedItems());
+		testSort(ArrayGenerator.createSortedArrayWithDuplicatedItems());
 	}
 
 	private void testSort(int[] array) {
@@ -75,35 +75,6 @@ public class MergeSortTest {
 		for (int i = 0; i < sortedArrayByTarget.length; i++) {
 			Assert.assertEquals(expectedSortedArray[i], sortedArrayByTarget[i]);
 		}
-	}
-
-	private int[] createUnsortedArrayWithDuplicatedItems() {
-		return new int[] { 3, 1, 52, 3, 1, 2, 21, 11, 10, 9 };
-	}
-
-	private int[] createSortedFiveItemsArray() {
-		return new int[] { 2, 17, 31, 46, 50 };
-	}
-
-	private int[] createSortedArrayWithDuplicatedItems() {
-		return new int[] { 2, 2, 4, 8, 21, 30 };
-	}
-
-	private int[] createRandomArrayWithoutDuplicates(int expectedSize) {
-		if (expectedSize > 300) {
-			throw new IllegalArgumentException("Max size is 300!");
-		}
-		Random random = new Random();
-		HashSet<Integer> numbers = new HashSet<>();
-		while (numbers.size() <= expectedSize) {
-			numbers.add(random.nextInt(300 - 1) + 1);
-		}
-		int[] array = new int[numbers.size()];
-		int arrayIndex = 0;
-		for (int number : numbers) {
-			array[arrayIndex++] = number;
-		}
-		return array;
 	}
 
 }
