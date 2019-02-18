@@ -6,6 +6,7 @@ package com.carlosrobertofreire.whiteboard.concept;
  */
 public class Recursion {
 
+	
 	public int factorial(int number) {
 		if (number < 0) {
 			throw new IllegalArgumentException("Number cannot be lower than 0!");

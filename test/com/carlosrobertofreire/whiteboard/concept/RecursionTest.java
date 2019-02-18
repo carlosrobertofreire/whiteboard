@@ -49,13 +49,13 @@ public class RecursionTest {
 		int input = 3;
 		int expectedResult = 2;
 		Assert.assertEquals(expectedResult, target.fibonacci(input));
-		
+
+		input = 4;
+		expectedResult = 3;
+		Assert.assertEquals(expectedResult, target.fibonacci(input));
+
 		input = 10;
 		expectedResult = 55;
-		Assert.assertEquals(expectedResult, target.fibonacci(input));
-		
-		input = 30;
-		expectedResult = 832040;
 		Assert.assertEquals(expectedResult, target.fibonacci(input));
 	}
 
@@ -63,6 +63,13 @@ public class RecursionTest {
 	public void test_fibonacci_inputIsLowerThanZero() {
 		int input = -3;
 		int expectedResult = 0;
+		Assert.assertEquals(expectedResult, target.fibonacci(input));
+	}
+
+	@Test
+	public void test_fibonacci_inputIsTheHugeNumber() {
+		int input = 40;
+		int expectedResult = 102334155;
 		Assert.assertEquals(expectedResult, target.fibonacci(input));
 	}
 
