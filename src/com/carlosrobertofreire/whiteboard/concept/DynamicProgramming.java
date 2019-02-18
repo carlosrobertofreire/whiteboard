@@ -8,6 +8,9 @@ import java.util.HashMap;
  */
 public class DynamicProgramming {
 
+	/**
+	 * O(n) - Linear
+	 */
 	public int fibonacci(int number) {
 		HashMap<Integer, Integer> memo = new HashMap<>();
 		return fibonacci(number, memo);

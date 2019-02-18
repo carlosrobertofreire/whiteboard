@@ -6,7 +6,9 @@ package com.carlosrobertofreire.whiteboard.concept;
  */
 public class Recursion {
 
-	
+	/**
+	 * O(n) - Linear
+	 */
 	public int factorial(int number) {
 		if (number < 0) {
 			throw new IllegalArgumentException("Number cannot be lower than 0!");
@@ -17,6 +19,9 @@ public class Recursion {
 		return number * factorial(number - 1);
 	}
 
+	/**
+	 * O(2^n) - Exponential
+	 */
 	public int fibonacci(int number) {
 		if (number == 1) {
 			return 1;
