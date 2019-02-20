@@ -124,6 +124,9 @@ public class BinarySearchTree {
 		}
 	}
 	
+	/**
+	 * O(n) - Linear
+	 */
 	public void printInOrder() {
 		validateIfIsEmpty();
 		printInOrder(root);
@@ -139,6 +142,9 @@ public class BinarySearchTree {
 		}
 	}	
 	
+	/**
+	 * O(n) - Linear
+	 */
 	public void printPreOrder() {
 		validateIfIsEmpty();
 		printPreOrder(root);
@@ -154,6 +160,9 @@ public class BinarySearchTree {
 		}
 	}	
 
+	/**
+	 * O(n) - Linear
+	 */
 	public void printPostOrder() {
 		validateIfIsEmpty();
 		printPostOrder(root);
