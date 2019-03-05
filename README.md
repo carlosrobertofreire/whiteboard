@@ -1,2 +1,2 @@
 # whiteboard
-Data Structures, Algorithms and Concepts from scratch.
+Data structures, algorithms, and some other Computer Science concepts. From scratch. In Java.
